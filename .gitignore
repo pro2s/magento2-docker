@@ -1,3 +1,5 @@
-
 magento2
+code/*
+!code/.gitkeep
 .env
+

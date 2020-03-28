@@ -63,6 +63,10 @@ services:
         target: /var/www/html
         consistency: delegated
       - type: bind
+        source: ./code
+        target: /var/www/html/app/code
+        consistency: delegated
+      - type: bind
         source: ./magento2-install.sh
         target: /magento2-install.sh
         consistency: delegated

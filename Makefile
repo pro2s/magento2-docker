@@ -28,6 +28,9 @@ deploy:
 	docker-compose exec apache bash -c "bin/magento dev:source-theme:deploy" \
     docker-compose exec apache bash -c "bin/magento setup:static-content:deploy"
 
+fix:
+	docker-compose exec apache bash -c "chown -R :www-data ." \
+
 sample:
 	docker-compose exec apache bash -c "php -d memory_limit=-1 bin/magento sampledata:deploy"
 
