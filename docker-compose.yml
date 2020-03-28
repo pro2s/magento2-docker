@@ -44,7 +44,8 @@ services:
       - nginx-proxy
 
   apache:
-    image: fballiano/magento2-apache-php
+    build:
+      context: ./docker/apache
     depends_on:
       - db
       - cache
