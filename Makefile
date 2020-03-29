@@ -15,14 +15,20 @@ cron-stop:
 bash:
 	docker-compose exec apache bash
 
-upgrade:
-	docker-compose exec apache bash -c "bin/magento setup:upgrade" \
-	docker-compose exec apache bash -c "bin/magento setup:static-content:deploy" \
-	docker-compose exec apache bash -c "bin/magento cache:flush"
+upgrade: setup-upgrade flush
 
-upgrade-di:
-	docker-compose exec apache bash -c "bin/magento setup:di:compile" \
-	docker-compose exec apache bash -c "bin/magento setup:static-content:deploy" \
+setup-upgrade:
+	docker-compose exec apache bash -c "bin/magento setup:upgrade"
+
+upgrade-di:  setup-upgrade-di flush
+
+setup-upgrade-di:
+	docker-compose exec apache bash -c "bin/magento setup:di:compile"
+
+static-deploy:
+	docker-compose exec apache bash -c "bin/magento setup:static-content:deploy"
+
+flush:
 	docker-compose exec apache bash -c "bin/magento cache:flush"
 
 install:
