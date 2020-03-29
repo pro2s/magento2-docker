@@ -16,7 +16,9 @@ bash:
 	docker-compose exec apache bash
 
 upgrade:
-	docker-compose exec apache bash -c "bin/magento setup:upgrade"
+	docker-compose exec apache bash -c "bin/magento setup:upgrade" \
+	docker-compose exec apache bash -c "bin/magento setup:static-content:deploy" \
+	docker-compose exec apache bash -c "bin/magento cache:flush"
 
 install:
 	docker-compose exec apache bash -c "sh /var/magento2-install.sh"
